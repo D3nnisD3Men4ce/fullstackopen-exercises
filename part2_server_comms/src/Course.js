@@ -1,5 +1,5 @@
 import React from "react";
-import Pass from "./App";
+import Pass from "./Pass";
 
 
 const Title = (props) => {
@@ -11,7 +11,7 @@ const Title = (props) => {
 } 
 
 
-const App = ({ courses }) => {
+const Course = ({ courses }) => {
   {console.log(courses)}
   const title = "Web Dev Curriculum"
   return (
@@ -25,5 +25,5 @@ const App = ({ courses }) => {
   );
 };
 
-export default App;
+export default Course;
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './Course';
-import Pass from './App';
+import Course from './Course';
+
+
 
 const courses = [
   {
@@ -48,14 +49,24 @@ const courses = [
   }
 ]
 
+// Is there a specific reason why the key has to be on the 
+// outermost returned element? 
+
+// When React goes through an array, it only looks at the things 
+// directly in it. It doesn't recurse all the way through 
+// looking for a key. If it did, it would (1) be slow, and 
+// (2) cause ambiguity when there were nested arrays.
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    {console.log(courses)}
-    <App courses={courses}/>
-  </React.StrictMode>
+  // <React.StrictMode>
+    <div>
+      {console.log(courses)}
+      <Course courses={courses}/>
+    </div>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
