@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Course from './Course';
-
-
+import Forms from './Forms';
+import Phonebook from './PhonebookSimple/Phonebook';
 
 const courses = [
   {
@@ -49,6 +49,8 @@ const courses = [
   }
 ]
 
+
+
 // Is there a specific reason why the key has to be on the 
 // outermost returned element? 
 
@@ -58,13 +60,14 @@ const courses = [
 // (2) cause ambiguity when there were nested arrays.
 
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     <div>
       {console.log(courses)}
-      <Course courses={courses}/>
+      <Course courses={courses} />
+      <Forms />
+      <Phonebook />
     </div>
   // </React.StrictMode>
 );

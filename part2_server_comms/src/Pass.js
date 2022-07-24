@@ -47,11 +47,10 @@ const Total = ( {course} ) => {
       total is {total} exercises
     </h3>
   )
-
 }
 
 const Pass = ( { course } ) => {
-  {console.log('AAAAAAAAAAAAAAAAAAA', course)}
+  // {console.log('AAAAAAAAAAAAAAAAAAA', course)}
   return (
     <div>
       <Header course={course} />
