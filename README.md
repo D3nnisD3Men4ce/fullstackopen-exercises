@@ -1,2 +1,2 @@
 # Fullstack Open Exercises
-## Didn's enroll but did exercises
+## Didn't enroll but did exercises
