@@ -4,6 +4,7 @@ import Course from './Course';
 import Forms from './Forms';
 import Phonebook from './PhonebookSimple/Phonebook';
 
+
 const courses = [
   {
     name: 'Half Stack application development',
@@ -60,6 +61,7 @@ const courses = [
 // (2) cause ambiguity when there were nested arrays.
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
@@ -69,6 +71,10 @@ root.render(
       <Forms />
       <Phonebook />
     </div>
+
+
+
+    
   // </React.StrictMode>
 );
 

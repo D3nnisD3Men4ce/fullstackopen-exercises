@@ -30,8 +30,7 @@ function Record({ persons, newFilter }) {
       />
     ));
   
-    const recordsToShow = newFilter ? filteredContacts : unfilteredContacts
-                            ;
+    const recordsToShow = newFilter ? filteredContacts : unfilteredContacts;
   
     return (
       <>
