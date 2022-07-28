@@ -68,11 +68,12 @@ root.render(
     <div>
       {console.log(courses)}
       <Course courses={courses} />
+      <br /><br /><br /><br /><br />
       <Forms />
+      <br /><br /><br /><br /><br />
       <Phonebook />
+
     </div>
-
-
 
     
   // </React.StrictMode>

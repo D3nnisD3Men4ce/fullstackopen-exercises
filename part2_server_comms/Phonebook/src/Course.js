@@ -12,7 +12,7 @@ const Title = (props) => {
 
 
 const Course = ({ courses }) => {
-  {console.log(courses)}
+  console.log(courses)
   const title = "Web Dev Curriculum"
   return (
     <div>

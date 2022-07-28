@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "./Form"
 import Filter from "./Filter";
 import Record from "./Record"
+import phonebookService from "./phonebookServices";
 
 
 const Phonebook = () => {
-  const [persons, setPersons] = useState([
-    { name: "Arto Hellas", phone: "040-123456", id: 1 },
-    { name: "Ada Lovelace", phone: "39-44-5323523", id: 2 },
-    { name: "Dan Abramov", phone: "12-43-234345", id: 3 },
-    { name: "Mary Poppendieck", phone: "39-23-6423122", id: 4 },
-  ]);
+  const [persons, setPersons] = useState([]);
 
   const [newName, setNewName] = useState("");
   const [newPhone, setNewPhone] = useState("");
@@ -37,12 +33,23 @@ const Phonebook = () => {
     }
   }
 
+  const getData = () => {
+    phonebookService
+      .getAll()
+      .then(response => {
+        setPersons(response)
+        console.log("AAAAAAAAAALLLLLLLLLLLLl", response);
+      })
+  }
+
+  useEffect(getData, [])
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPerson = {
       name: newName,
       phone: newPhone,
-      id: persons.length + 1,
     };
 
     if (persons.some((person) => person.name === newPerson.name)) {
@@ -57,14 +64,26 @@ const Phonebook = () => {
       )
     }
     
-    // setPersons([...persons, newPerson]);
+    setPersons([...persons, newPerson]);
+    phonebookService
+      .create(newPerson)
+      .then(response => {
+        console.log("GGGGGGGGGGGGGGGGG", response);
+      })
     
-    setPersons(persons.concat(newPerson));
-    console.log(persons.concat(newPerson));
     setNewName("");
     setNewPhone("");
   }
 
+
+  const deleteContact = (id, name) =>{
+    if (window.confirm(`Delete ${name}?`)){
+      const changedPhoneBook = persons.filter(contact => contact.id !== id)
+      phonebookService.destroy(id)
+      setPersons(changedPhoneBook)
+    }
+  }
+  
   return (
     <div>
       <Filter newFilter={newFilter} 
@@ -74,7 +93,8 @@ const Phonebook = () => {
             handleChange={handleChange}
             handleSubmit={handleSubmit} />
       <Record persons={persons} 
-              newFilter={newFilter} />
+              newFilter={newFilter} 
+              deleteContact={deleteContact}/>
     </div>
   );
 };
