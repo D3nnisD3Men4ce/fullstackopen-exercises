@@ -21,7 +21,7 @@ function Record({ persons, newFilter, deleteContact }) {
         deleteContact={() => deleteContact(person.id, person.name)}
       />
     ));
-  
+      
     const filteredContacts = filteredArray.map((person) => (
       <Contact
         name={person.name}
@@ -31,7 +31,7 @@ function Record({ persons, newFilter, deleteContact }) {
         deleteContact={() => deleteContact(person.id, person.name)}
       />
     ));
-  
+
     const recordsToShow = newFilter ? filteredContacts : unfilteredContacts;
   
     return (

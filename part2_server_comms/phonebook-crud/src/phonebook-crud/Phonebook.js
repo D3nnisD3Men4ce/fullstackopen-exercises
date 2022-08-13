@@ -7,7 +7,6 @@ import phonebookService from "./phonebookServices";
 
 const Phonebook = () => {
   const [persons, setPersons] = useState([]);
-
   const [newName, setNewName] = useState("");
   const [newPhone, setNewPhone] = useState("");
   const [newFilter, setFilter] = useState("");
@@ -33,6 +32,7 @@ const Phonebook = () => {
     }
   }
 
+
   const getData = () => {
     phonebookService
       .getAll()
@@ -52,11 +52,24 @@ const Phonebook = () => {
       phone: newPhone,
     };
 
-    if (persons.some((person) => person.name === newPerson.name)) {
-      return (
-        alert(`${newPerson.name} is already added to phonebook`)
-        )
+
+    if (persons.some((person) => person.name === newName)) {
+        if (window.confirm(`${newPerson.name} is already added to phonebook. Replace ${newPerson.name}'s Phone number?`)) {
+              
+            const contact = persons.find(person => person.name === newName)
+            const updatedContact = {...contact, number: newPhone}
+
+            phonebookService
+              .update(contact.id, updatedContact)
+              .then(response => {
+                setPersons(persons.map(contact => contact.name !== newName ? contact : response))
+                console.log("UPDATEEEEEEDD")
+              })
+            setNewName("");
+            setNewPhone("");
+        }
     }
+
 
     if (newPerson.name.trim().length === 0 || newPerson.phone.trim().length === 0) {
       return (
@@ -79,7 +92,8 @@ const Phonebook = () => {
   const deleteContact = (id, name) =>{
     if (window.confirm(`Delete ${name}?`)){
       const changedPhoneBook = persons.filter(contact => contact.id !== id)
-      phonebookService.destroy(id)
+      phonebookService
+        .destroy(id)
       setPersons(changedPhoneBook)
     }
   }
@@ -95,6 +109,7 @@ const Phonebook = () => {
       <Record persons={persons} 
               newFilter={newFilter} 
               deleteContact={deleteContact}/>
+              {/* {updateContact(persons)} */}
     </div>
   );
 };
