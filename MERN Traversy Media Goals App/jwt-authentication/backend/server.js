@@ -9,10 +9,17 @@ connectDB()
 
 const app = express()
 
+// Global middlewares
+// Executed in order
+// Try to use next as 3rd parameter and call next() in the controllers
+// There can be multiple middlewares
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use('/api/goals', require('./routes/goalRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
+
 
 app.use(errorHandler)
 
