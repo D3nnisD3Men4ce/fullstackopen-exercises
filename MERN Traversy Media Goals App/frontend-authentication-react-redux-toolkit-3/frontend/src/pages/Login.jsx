@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { FaSignInAlt } from "react-icons/fa"
+import { login, reset } from "../features/auth/authSlice"
+import Spinner from '../components/Spinner'
+
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -9,38 +15,49 @@ function Login() {
 
   const { email, password } = formData
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    // console.log(e.target);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-    switch (name) {
-      case "email":
-            setFormData( prev => {
-                return {
-                  ...prev,
-                  [name] : value
-                }
-            });
-          return
-      case "password":
-            setFormData( prev => {
-                return {
-                  ...prev,
-                  [name] : value
-                }
-            });
-          return
-      default:
-        return
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth) 
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
     }
+
+    if (isSuccess || user) {
+      navigate('/')
+    }
+
+    dispatch(reset())
+    // dispatch is executing the authSlice methods
+
+  }, [user, isError, isSuccess, message, navigate, dispatch])
+
+
+  const handleChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name] : e.target.value
+    }))
   }
+
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const { name, email, password, confirmPassword } = event.target
-    console.log({ name, email, password, confirmPassword });
-  }
+    
+    const userData = {
+      email,
+      password
+    }
 
+    dispatch(login(userData))
+  }
+  
+
+  if (isLoading) {
+    return <Spinner />
+  }  
 
   return (
     <>

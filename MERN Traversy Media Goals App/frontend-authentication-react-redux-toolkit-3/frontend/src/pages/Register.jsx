@@ -7,7 +7,6 @@ import { register, reset } from "../features/auth/authSlice"
 import Spinner from '../components/Spinner'
 
 
-
 function Register() {
   const [formData, setFormData] = useState({
     name: '',
@@ -25,6 +24,8 @@ function Register() {
   // destructuring authSlice states
   // state.auth can be traced back to authSlice
 
+  console.log(user);
+
   useEffect(() => {
     if (isError) {
       toast.error(message)
@@ -41,47 +42,13 @@ function Register() {
 
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    // console.log(e.target);
-
-    switch (name) {
-        case "name":
-            setFormData( prev => {
-                return {
-                  ...prev,
-                  [name] : value
-                }
-            });
-          return
-      case "email":
-            setFormData( prev => {
-                return {
-                  ...prev,
-                  [name] : value
-                }
-            });
-          return
-      case "password":
-            setFormData( prev => {
-                return {
-                  ...prev,
-                  [name] : value
-                }
-            });
-          return
-      case "confirmPassword":
-            setFormData( prev => {
-                return {
-                  ...prev,
-                  [name] : value
-                }
-            });
-          return
-      default:
-        return
-    }
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name] : e.target.value
+    }))
   }
 
+  
   const handleSubmit = (event) => {
     event.preventDefault()
     
