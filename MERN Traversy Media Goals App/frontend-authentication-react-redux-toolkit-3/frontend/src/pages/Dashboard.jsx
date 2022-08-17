@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from "react-redux"
 import GoalForm from "../components/GoalForm"
 import GoalItem from "../components/GoalItem"
 import Spinner from "../components/Spinner"
-import { getGoals, reset } from "../features/goals/goalSlice"
+import { getGoals } from "../features/goals/goalSlice"
+import { reset } from "../features/auth/authSlice"
+
 
 function Dashboard() {
 
@@ -22,9 +24,10 @@ function Dashboard() {
     
     if (!user) {
       navigate('/login')
-    } else {
-      dispatch(getGoals())
-    }
+    } 
+
+    dispatch(getGoals())
+
     // console.log("AAAAAAAAAAAAAAAAA");
     
     return () => {
@@ -53,7 +56,7 @@ function Dashboard() {
           <div className='goals'>
               {goals.map((goal) => (
                   <GoalItem 
-                      key={goal._id} 
+                      key={goal._id}
                       goal={goal} 
                   />
               ))}
@@ -62,7 +65,6 @@ function Dashboard() {
           <h3>You have not set any goals</h3>
         )}
       </section>
-
     </>
   )
 }

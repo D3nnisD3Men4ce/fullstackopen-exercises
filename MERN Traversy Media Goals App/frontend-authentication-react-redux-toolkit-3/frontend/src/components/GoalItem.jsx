@@ -5,6 +5,12 @@ function GoalItem({ goal }) {
 
     const dispatch = useDispatch()
 
+    // console.log("AAAAAAAAAAAAAAAAAA", goal)
+    
+    const handleDelete = () => {
+      dispatch(deleteGoal(goal._id))
+    }
+
   return (
     <div className="goal">
         <div>
@@ -12,7 +18,10 @@ function GoalItem({ goal }) {
         </div>
 
         <h2>{ goal.text }</h2>
-        <button onClick={ () => dispatch(deleteGoal(goal._id)) } className="close">
+        {/* <h4>{ goal._id }</h4> */}
+        <button 
+            onClick={ handleDelete } 
+            className="close">
             X
         </button>
     </div>
