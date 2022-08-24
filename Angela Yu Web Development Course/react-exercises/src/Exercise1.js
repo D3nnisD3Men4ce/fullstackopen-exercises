@@ -2,16 +2,18 @@
 
 
 
-
-const evenSecond = {
-    color: "green"
-}
+const evenSecond = { color: "green" }
 
 const oddSecond = {
   color: "red"
 }
 
+function greeting() {
+
+}
+
 const greeting = () => {
+
 
   const date = new Date().getSeconds()
 

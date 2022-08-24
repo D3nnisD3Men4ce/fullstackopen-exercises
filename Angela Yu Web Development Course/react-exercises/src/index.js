@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import Exercise1 from "./Exercise1"
+import Exercise1 from "./Exercise1"
 // import * as pi from './Exercise2';
 // import AppExercise3 from './Exercise3_Components/AppExercise3';
 // import Exercise4 from './Exercise4';
@@ -14,29 +14,27 @@ import ReactDOM from 'react-dom/client';
 // import Exercise12 from './Exercise12';
 // import Exercise13 from './Exercise13';
 // import Exercise14 from './Exercise14/Exercise14';
-import KeeperApp from './Exercise15/KeeperApp';
-
-
-
-
-
-
+// import KeeperApp from './Exercise15/KeeperApp';
 
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+
+
 root.render(
   <div>
 
-    {/* <Exercise1/> */}
+    {/* <Exercise1 /> */}
 
-    {/* <h3>
+    <h3>
       Exercise 2
       {console.log(pi)}
       {console.log(pi.doublePi())}
       {console.log(pi.triplePi())}
-    </h3> */}
+    </h3>
 
   {/* <AppExercise3 /> */}
 
@@ -62,7 +60,7 @@ root.render(
 
   {/* <Exercise14 /> */}
 
-  <KeeperApp />
+  {/* <KeeperApp /> */}
 
   </div>
 );
